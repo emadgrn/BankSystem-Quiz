@@ -15,7 +15,7 @@ namespace BankSystem_Quiz.Entities
         public string Password { get; set; }
         public float Balance { get; set; }
         public bool IsActive { get; set; }
-        public List<Transaction> SentTransactions { get; set; }
-        public List<Transaction> ReceivedTransactions { get; set; }
+        public List<Transaction> SentTransactions { get; set; } = [];
+        public List<Transaction> ReceivedTransactions { get; set; } = [];
     }
 }
