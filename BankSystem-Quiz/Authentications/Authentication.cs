@@ -54,6 +54,7 @@ namespace BankSystem_Quiz.Authentications
                 {
                     //card.IsActive = false;
                     _cardRepo.UpdateActivation(card.CardNumber, false);
+                    _cardRepo.UpdateAttempts(card.CardNumber, failedAttempts);
                     _unitOfWork.Save();
                     throw new Exception("Card blocked due to 3 failed login attempts.");
                 }

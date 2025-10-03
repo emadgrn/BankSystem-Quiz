@@ -22,7 +22,7 @@ namespace BankSystem_Quiz
         private static readonly IValidator _validate = new Validator();
         private static readonly ICardRepository _cardRepo = new CardRepository(_appDbContext);
         private static readonly ITransactionRepository _transactionRepo = new TransactionRepository(_appDbContext);
-        private static readonly IAuthentication _auth = new Authentication(_cardRepo, _validate);
+        private static readonly IAuthentication _auth = new Authentication(_cardRepo, _validate,_unitOfWork);
         private static readonly ICardService _cardService = new CardService(_cardRepo, _transactionRepo, _unitOfWork);
         static void Main(string[] args)
         {
