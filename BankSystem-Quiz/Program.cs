@@ -112,6 +112,10 @@ namespace BankSystem_Quiz
                                 string destinationCardNumber = Console.ReadLine()!;
                                 Console.Write("Enter amount: ");
                                 float amount = float.Parse(Console.ReadLine()!);
+                                if (!_validate.IsValidAmount(amount))
+                                {
+                                    throw new Exception("amount >0");
+                                }
 
                                 var result = _cardService.TransferMoney(LocalStorage.CurrentCard!.CardNumber, destinationCardNumber, amount);
                                 if (result)
