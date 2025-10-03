@@ -23,7 +23,7 @@ namespace BankSystem_Quiz.Services
             if (sourceCard.Balance < amount) throw new Exception("There isn't enough money!");
 
             _cardRepo.UpdateBalance(sourceCard.CardNumber,(sourceCard.Balance-amount));
-            _cardRepo.UpdateBalance(destinationCard.CardNumber, (destinationCard.Balance - amount));
+            _cardRepo.UpdateBalance(destinationCard.CardNumber, (destinationCard.Balance + amount));
 
             var transaction = new Transaction
             {
