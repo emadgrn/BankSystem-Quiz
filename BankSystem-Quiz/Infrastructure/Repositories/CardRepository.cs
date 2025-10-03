@@ -45,6 +45,12 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
             model.Balance = balance;
         }
 
+        public void UpdateAttempts(string cardNumber, int failedAttempts)
+        {
+            var model = GetById(cardNumber);
+
+            model.FailedLoginAttempts = failedAttempts;
+        }
         public void UpdateActivation(string cardNumber, bool isActive)
         {
             var model = GetById(cardNumber);

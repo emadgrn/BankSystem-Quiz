@@ -11,6 +11,7 @@ namespace BankSystem_Quiz.Contracts.Repositories
     {
         public string Create(Card card);
         public bool Exist(string cardNumber);
+        public void UpdateAttempts(string cardNumber, int failedAttempts);
         public Card GetById(string cardNumber);
         public List<Card> GetAll();
         public void UpdateBalance(string cardNumber, float balance);
