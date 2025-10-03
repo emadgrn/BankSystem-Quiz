@@ -18,6 +18,10 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
             return card.CardNumber;
         }
 
+        public bool Exist(string cardNumber)
+        {
+            return _dbContext.Cards.Any(x => x.CardNumber == cardNumber);
+        }
         public Card GetById(string cardNumber)
         {
             var card = _dbContext.Cards.FirstOrDefault(x => x.CardNumber == cardNumber);
@@ -34,18 +38,18 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
                 .ToList();
         }
 
-        public void UpdateBalance(Card card)
+        public void UpdateBalance(string cardNumber,float balance)
         {
-            var model = GetById(card.CardNumber);
+            var model = GetById(cardNumber);
 
-            model.Balance = card.Balance;
+            model.Balance = balance;
         }
 
-        public void UpdateActivation(Card card)
+        public void UpdateActivation(string cardNumber, bool isActive)
         {
-            var model = GetById(card.CardNumber);
+            var model = GetById(cardNumber);
 
-            model.IsActive = card.IsActive;
+            model.IsActive =isActive;
         }
 
         public void Delete(string cardNumber)

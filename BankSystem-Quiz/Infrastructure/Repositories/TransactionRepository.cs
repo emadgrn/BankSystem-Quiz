@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankSystem_Quiz.DTO;
 using BankSystem_Quiz.Entities;
 
 namespace BankSystem_Quiz.Infrastructure.Repositories
@@ -29,18 +30,34 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
             return transaction;
         }
 
-        public List<Transaction> GetAll()
+        public List<ShowTransactionDto> GetAllTransactionByCardNumber(string cardNumber)
         {
             return _dbContext.Transactions
-                .Include(b => b.Category)
+                .Where(t=>t.DestinationCardNumber==cardNumber||t.SourceCardNumber==cardNumber)
+                .Select(t=>new ShowTransactionDto()
+                {
+                    TransactionId = t.TransactionId,
+                    SourceCardNumber = t.SourceCardNumber,
+                    SourceFullName = t.SourceCard.HolderName,
+                    DestinationCardNumber = t.DestinationCardNumber,
+                    DestinationFullName = t.DestinationCard.HolderName,
+                    Amount = t.Amount,
+                    IsSuccessful = t.IsSuccessful,
+                    TransactionDate = t.TransactionDate
+                })
+                .ToList();
+        }
+            public List<Transaction> GetAll()
+        {
+            return _dbContext.Transactions
                 .ToList();
         }
 
-        public void UpdateSuccess(Transaction transaction)
+        public void UpdateSuccess(int id,bool isSuccessful)
         {
-            var model = GetById(transaction.TransactionId);
+            var model = GetById(id);
 
-            model.isSuccessful = transaction.isSuccessful;
+            model.IsSuccessful = isSuccessful;
         }
 
         public void Delete(int id)

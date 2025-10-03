@@ -1,27 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BankSystem_Quiz.Entities
+namespace BankSystem_Quiz.DTO
 {
-    public class Transaction
+    public class ShowTransactionDto
     {
         public int TransactionId { get; set; }
-
-        [ForeignKey("SourceCard")]
         public string SourceCardNumber { get; set; }
-        public Card SourceCard { get; set; }
-
-        [ForeignKey("DestinationCard")]
+        public string SourceFullName { get; set; }
         public string DestinationCardNumber { get; set; }
-        public Card DestinationCard { get; set; }
+        public string DestinationFullName { get; set; }
         public float Amount { get; set; }
         public DateTime TransactionDate { get; set; }
-        public bool IsSuccessful { get; set; } = false;
-
-
+        public bool IsSuccessful { get; set; }
     }
 }
