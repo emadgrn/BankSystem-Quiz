@@ -33,8 +33,8 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
         public List<ShowTransactionDto> GetAllTransactionByCardNumber(string cardNumber)
         {
             return _dbContext.Transactions
-                .Where(t=>t.DestinationCardNumber==cardNumber||t.SourceCardNumber==cardNumber)
-                .Select(t=>new ShowTransactionDto()
+                .Where(t => t.DestinationCardNumber == cardNumber || t.SourceCardNumber == cardNumber)
+                .Select(t => new ShowTransactionDto()
                 {
                     TransactionId = t.TransactionId,
                     SourceCardNumber = t.SourceCardNumber,
@@ -47,13 +47,13 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
                 })
                 .ToList();
         }
-            public List<Transaction> GetAll()
+        public List<Transaction> GetAll()
         {
             return _dbContext.Transactions
                 .ToList();
         }
 
-        public void UpdateSuccess(int id,bool isSuccessful)
+        public void UpdateSuccess(int id, bool isSuccessful)
         {
             var model = GetById(id);
 

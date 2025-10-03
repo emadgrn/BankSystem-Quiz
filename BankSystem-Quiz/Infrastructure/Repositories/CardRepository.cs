@@ -51,6 +51,7 @@ namespace BankSystem_Quiz.Infrastructure.Repositories
 
             model.FailedLoginAttempts = failedAttempts;
         }
+
         public void UpdateActivation(string cardNumber, bool isActive)
         {
             var model = GetById(cardNumber);

@@ -91,7 +91,7 @@ namespace BankSystem_Quiz
                 {
                     Console.Clear();
                     Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    Console.WriteLine("ADMIN PAGE");
+                    Console.WriteLine("CARD PAGE");
                     Console.ResetColor();
                     Console.WriteLine();
                     Console.WriteLine(" 0.Log out");

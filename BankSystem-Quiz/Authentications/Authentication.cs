@@ -52,7 +52,6 @@ namespace BankSystem_Quiz.Authentications
 
                 if (failedAttempts >= 3)
                 {
-                    //card.IsActive = false;
                     _cardRepo.UpdateActivation(card.CardNumber, false);
                     _cardRepo.UpdateAttempts(card.CardNumber, failedAttempts);
                     _unitOfWork.Save();
@@ -66,7 +65,6 @@ namespace BankSystem_Quiz.Authentications
                 }
             }
 
-            //card.FailedLoginAttempts = 0;
             _cardRepo.UpdateAttempts(card.CardNumber,0);
             _unitOfWork.Save();
 
