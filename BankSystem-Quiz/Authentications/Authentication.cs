@@ -46,23 +46,27 @@ namespace BankSystem_Quiz.Authentications
 
             if (card.Password != password)
             {
-                card.FailedLoginAttempts++;
+                int failedAttempts=card.FailedLoginAttempts;
+                failedAttempts++;
                 
 
-                if (card.FailedLoginAttempts >= 3)
+                if (failedAttempts >= 3)
                 {
-                    card.IsActive = false;
+                    //card.IsActive = false;
+                    _cardRepo.UpdateActivation(card.CardNumber, false);
                     _unitOfWork.Save();
                     throw new Exception("Card blocked due to 3 failed login attempts.");
                 }
                 else
                 {
+                    _cardRepo.UpdateAttempts(card.CardNumber, failedAttempts);
                     _unitOfWork.Save();
-                    throw new Exception($"Invalid password! Attempt {card.FailedLoginAttempts}/3.");
+                    throw new Exception($"Invalid password! Attempt {failedAttempts}/3.");
                 }
             }
 
-            card.FailedLoginAttempts = 0;
+            //card.FailedLoginAttempts = 0;
+            _cardRepo.UpdateAttempts(card.CardNumber,0);
             _unitOfWork.Save();
 
             LocalStorage.CurrentCard = card;
